@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,7 +22,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/products/{id}/edit', 'ProductController@edit')->name('Products.edit');
-
-Route::delete('/products/{id}', 'ProductController@destroy')->name('Products.destroy');
+Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('Products.edit');
+Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('Products.destroy');
